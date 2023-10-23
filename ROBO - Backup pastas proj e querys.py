@@ -16,7 +16,8 @@ def pausa(tempo):
 def fim():
     pausa(1)
     print("Backup finalizado com sucesso!")
-    pyautogui.alert("     Backup finalizado com sucesso!     ")
+    pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=10000)
+    print("==================================== FIM ====================================")     
     sys.exit()
 
 def botao_Apps():
@@ -49,7 +50,8 @@ def backup_Projetos():
     pyautogui.hotkey("enter")
     pausa(1)
     print("click na pasta;")
-    pyautogui.click(975 , 531)
+    #pyautogui.click(975 , 531)
+    pyautogui.hotkey("win" , "up")
     pyautogui.write("Projetos")
     botao_Apps()
     #selecionando arquivo zip recem criado
@@ -84,7 +86,8 @@ def backup_Projetos():
     pyautogui.hotkey("enter")
     pausa(2)
     print("click na pasta;")
-    pyautogui.click(526,522)
+    #pyautogui.click(526,522)
+    pyautogui.hotkey("win" , "up")    
     pausa(2)
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
@@ -151,7 +154,8 @@ def backup_MV_QUERYs():
     pyautogui.hotkey("enter")
     pausa(2)
     print("click na pasta;")
-    pyautogui.click(526,522)
+    #pyautogui.click(526,522)
+    pyautogui.hotkey("win" , "up")    
     pausa(2)
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
@@ -217,7 +221,8 @@ def backup_IW_QUERIES_HOME_CARE():
     pyautogui.hotkey("enter")
     pausa(2)
     print("click na pasta;")
-    pyautogui.click(526,522)
+    #pyautogui.click(526,522)
+    pyautogui.hotkey("win" , "up")    
     pausa(2)
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
@@ -227,9 +232,14 @@ def backup_IW_QUERIES_HOME_CARE():
 
 
 #==================================== INICIO ====================================
-print("==================================== INICIO ====================================")
-backup_Projetos()
-backup_MV_QUERYs()
-backup_IW_QUERIES_HOME_CARE()
-print("==================================== FIM ====================================")
-fim()
+try:
+    print("==================================== INICIO ====================================")
+    backup_Projetos()
+    backup_MV_QUERYs()
+    backup_IW_QUERIES_HOME_CARE()
+    fim() 
+except KeyboardInterrupt:
+    print("==================================== FIM ====================================")
+    print("Interrompido pelo ctrl + c!!!")        
+except Exception as erro:
+    print(f"Erro: {erro=}, {type(erro)=}")  
