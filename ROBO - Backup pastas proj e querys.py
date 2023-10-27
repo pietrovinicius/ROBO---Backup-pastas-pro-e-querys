@@ -5,6 +5,7 @@ import pyautogui
 import datetime
 import time
 import sys
+import os
 
 #para sair da automacao colocando o mouse no topo a esquerda da janela
 pyautogui.FAILSAFE = False
@@ -12,13 +13,27 @@ pyautogui.FAILSAFE = False
 def pausa(tempo):
     print("time de:" , tempo)
     time.sleep(tempo)
+
+def agora():
+    agora = datetime.datetime.now()
+    agora = agora.strftime("%d/%m/%Y %H:%M:%S")
+    return str(agora)
     
 def fim():
     pausa(1)
     print("Backup finalizado com sucesso!")
     pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=10000)
-    print("==================================== FIM ====================================")     
+    print("==================================== FIM ====================================")    
     sys.exit()
+    
+def log(texto_):
+    if not os.path.exists("log.txt"):
+            with open("log.txt" , "a" , encoding="utf-8-sig") as log:
+                print(f'Log é {os.path.exists("log.txt")}, então será criado na pasta')
+                log.write("")
+                        
+    with open("log.txt" , "a", encoding="utf-8-sig")  as log:
+        log.write(f"\n{str(texto_)} - {str(agora())}")     
 
 def botao_Apps():
     #botao para habilitar as opções
@@ -40,6 +55,7 @@ def botao_Apps():
     
 def backup_Projetos():
     print("***Função Backup Projetos***")
+    log("Função Backup Projetos - início")
     print("Tecla windows + R;")
     pyautogui.hotkey("win" , "r")
     pausa(1)
@@ -94,9 +110,12 @@ def backup_Projetos():
     pausa(5)
     print("Fechando explorer;")
     pyautogui.hotkey("Alt" , "f4")
+    log("Função Backup Projetos - fim")    
      
 
 def backup_MV_QUERYs():
+    print("Função Backup MV QUERYS - início")
+    log("Função Backup MV QUERYS - início")    
     pausa(2)
     print("win + r")
     pyautogui.hotkey("win" , "r")
@@ -162,8 +181,11 @@ def backup_MV_QUERYs():
     pausa(5)
     print("Fechando explorer;")
     pyautogui.hotkey("Alt" , "f4")    
+    log("Função Backup MV QUERYS - fim")    
     
 def backup_IW_QUERIES_HOME_CARE():
+    print("Função Backup IW QUERIES HOME CARE - início")
+    log("Função Backup IW QUERIES HOME CARE - início")        
     pausa(2)
     print("win + r")
     pyautogui.hotkey("win" , "r")
@@ -229,15 +251,17 @@ def backup_IW_QUERIES_HOME_CARE():
     pausa(5)
     print("Fechando explorer;")
     pyautogui.hotkey("Alt" , "f4")
+    log("Função Backup IW QUERIES HOME CARE - fim")        
 
 
-#==================================== INICIO ====================================
+#==================================== INÍCIO ====================================
 try:
-    print("==================================== INICIO ====================================")
-    backup_Projetos()
-    backup_MV_QUERYs()
-    backup_IW_QUERIES_HOME_CARE()
-    fim() 
+    print("==================================== INÍCIO ====================================")    
+    log("Função Backup Projetos - início")    
+    #backup_Projetos()
+    #backup_MV_QUERYs()
+    #backup_IW_QUERIES_HOME_CARE()
+    fim()
 except KeyboardInterrupt:
     print("==================================== FIM ====================================")
     print("Interrompido pelo ctrl + c!!!")        

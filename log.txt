@@ -1,0 +1,9 @@
+
+Função Backup Projetos - inicio - <function agora at 0x000001A4F181A0C0>
+Função Backup Projetos - fim - <function agora at 0x000001A4F181A0C0>
+Função Backup MV QUERYS - inicio - <function agora at 0x000001A4F181A0C0>
+Função Backup MV QUERYS - fim - <function agora at 0x000001A4F181A0C0>
+Função Backup IW QUERIES HOME CARE - inicio - <function agora at 0x000001A4F181A0C0>
+Função Backup IW QUERIES HOME CARE - fim - <function agora at 0x000001A4F181A0C0>
+Funcao Backup Projetos - inicio - 27/10/2023 08:26:07
+FunÃ§Ã£o Backup Projetos - inicio - 27/10/2023 08:44:29
