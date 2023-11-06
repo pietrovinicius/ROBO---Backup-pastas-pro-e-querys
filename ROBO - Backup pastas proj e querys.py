@@ -256,8 +256,7 @@ def backup_IW_QUERIES_HOME_CARE():
 
 #==================================== INÍCIO ====================================
 try:
-    print("==================================== INÍCIO ====================================")    
-    log("Função Backup Projetos - início")    
+    print("==================================== INÍCIO ====================================")      
     backup_Projetos()
     backup_MV_QUERYs()
     backup_IW_QUERIES_HOME_CARE()
