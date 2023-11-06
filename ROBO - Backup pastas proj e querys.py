@@ -12,7 +12,13 @@ pyautogui.FAILSAFE = False
 
 def pausa(tempo):
     print("time de:" , tempo)
-    time.sleep(tempo)
+    time.sleep(tempo)   
+    
+def fechando_explorer():
+    pausa(1)
+    print("Fechando explorer;")
+    pyautogui.hotkey("Alt" , "f4")
+    pausa(1)   
 
 def agora():
     agora = datetime.datetime.now()
@@ -20,7 +26,7 @@ def agora():
     return str(agora)
     
 def fim():
-    pausa(1)
+    fechando_explorer()
     print("Backup finalizado com sucesso!")
     pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=10000)
     print("==================================== FIM ====================================")    
@@ -88,10 +94,7 @@ def backup_Projetos():
     pausa(1)
     print("ctrl + c;")
     pyautogui.hotkey("ctrl" , "x")
-    pausa(1)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")
-    pausa(1)        
+     
     print("Tecla windows + R;")
     pyautogui.hotkey("win" , "r")
     pausa(1)
@@ -108,8 +111,8 @@ def backup_Projetos():
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
     pausa(5)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")
+    #todo
+    fechando_explorer()
     log("Função Backup Projetos - fim")    
      
 
@@ -159,10 +162,8 @@ def backup_MV_QUERYs():
     pausa(1)
     print("ctrl + c;")
     pyautogui.hotkey("ctrl" , "x")
-    pausa(1)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")
-    pausa(1)
+    #todo
+    fechando_explorer()
     print("Tecla windows + R;")
     pyautogui.hotkey("win" , "r")
     pausa(1)
@@ -179,8 +180,8 @@ def backup_MV_QUERYs():
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
     pausa(5)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")    
+    #todo
+    fechando_explorer()
     log("Função Backup MV QUERYS - fim")    
     
 def backup_IW_QUERIES_HOME_CARE():
@@ -230,8 +231,8 @@ def backup_IW_QUERIES_HOME_CARE():
     print("ctrl + c;")
     pyautogui.hotkey("ctrl" , "x")
     pausa(1)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")
+    #todo
+    fechando_explorer()
     pausa(1)    
     print("Tecla windows + R;")
     pyautogui.hotkey("win" , "r")
@@ -243,14 +244,13 @@ def backup_IW_QUERIES_HOME_CARE():
     pyautogui.hotkey("enter")
     pausa(2)
     print("click na pasta;")
-    #pyautogui.click(526,522)
     pyautogui.hotkey("win" , "up")    
     pausa(2)
     print("ctrl + v;")
     pyautogui.hotkey("ctrl" , "v")
     pausa(5)
-    print("Fechando explorer;")
-    pyautogui.hotkey("Alt" , "f4")
+    #todo
+    fechando_explorer()
     log("Função Backup IW QUERIES HOME CARE - fim")        
 
 
@@ -258,9 +258,9 @@ def backup_IW_QUERIES_HOME_CARE():
 try:
     print("==================================== INÍCIO ====================================")    
     log("Função Backup Projetos - início")    
-    #backup_Projetos()
-    #backup_MV_QUERYs()
-    #backup_IW_QUERIES_HOME_CARE()
+    backup_Projetos()
+    backup_MV_QUERYs()
+    backup_IW_QUERIES_HOME_CARE()
     fim()
 except KeyboardInterrupt:
     print("==================================== FIM ====================================")
