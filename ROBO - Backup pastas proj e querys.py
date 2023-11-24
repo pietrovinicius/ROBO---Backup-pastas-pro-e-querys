@@ -8,7 +8,7 @@ import sys
 import os
 
 #para sair da automacao colocando o mouse no topo a esquerda da janela
-pyautogui.FAILSAFE = False
+pyautogui.FAILSAFE = True
 
 def pausa(tempo):
     print("time de:" , tempo)
@@ -26,11 +26,12 @@ def agora():
     return str(agora)
     
 def fim():
-    fechando_explorer()
-    print("Backup finalizado com sucesso!")
+    #fechando_explorer()    
+    print("Backup finalizado com sucesso!")      
     pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=10000)
     print("==================================== FIM ====================================")    
-    sys.exit()
+    #sys.exit()
+    #fechando_explorer()
     
 def log(texto_):
     if not os.path.exists("log.txt"):
@@ -92,9 +93,9 @@ def backup_Projetos():
     print("enter")
     pyautogui.hotkey("enter")
     pausa(1)
-    print("ctrl + c;")
+    print("ctrl + x;")
     pyautogui.hotkey("ctrl" , "x")
-     
+    fechando_explorer()
     print("Tecla windows + R;")
     pyautogui.hotkey("win" , "r")
     pausa(1)
@@ -256,13 +257,16 @@ def backup_IW_QUERIES_HOME_CARE():
 
 #==================================== INÍCIO ====================================
 try:
-    print("==================================== INÍCIO ====================================")      
-    backup_Projetos()
-    backup_MV_QUERYs()
-    backup_IW_QUERIES_HOME_CARE()
-    fim()
+    if __name__ == "__main__":
+        print("==================================== INÍCIO ====================================")
+        pausa(2)
+        backup_Projetos()
+        backup_MV_QUERYs()
+        backup_IW_QUERIES_HOME_CARE()
+        fim()
 except KeyboardInterrupt:
     print("==================================== FIM ====================================")
     print("Interrompido pelo ctrl + c!!!")        
 except Exception as erro:
+    print("==================================== FIM ====================================")
     print(f"Erro: {erro=}, {type(erro)=}")  
