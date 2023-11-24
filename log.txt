@@ -163,3 +163,9 @@ Função Backup MV QUERYS - início - 23/11/2023 07:46:18
 Função Backup MV QUERYS - fim - 23/11/2023 07:46:59
 Função Backup IW QUERIES HOME CARE - início - 23/11/2023 07:46:59
 Função Backup IW QUERIES HOME CARE - fim - 23/11/2023 07:47:42
+Função Backup Projetos - início - 24/11/2023 12:23:56
+Função Backup Projetos - fim - 24/11/2023 12:24:28
+Função Backup MV QUERYS - início - 24/11/2023 12:24:28
+Função Backup MV QUERYS - fim - 24/11/2023 12:25:09
+Função Backup IW QUERIES HOME CARE - início - 24/11/2023 12:25:09
+Função Backup IW QUERIES HOME CARE - fim - 24/11/2023 12:25:52

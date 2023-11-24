@@ -6,6 +6,8 @@ import datetime
 import time
 import sys
 import os
+import tkinter as tk
+import threading
 
 #para sair da automacao colocando o mouse no topo a esquerda da janela
 pyautogui.FAILSAFE = True
@@ -28,7 +30,7 @@ def agora():
 def fim():
     #fechando_explorer()    
     print("Backup finalizado com sucesso!")      
-    pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=10000)
+    pyautogui.alert("     Backup finalizado com sucesso!     " , timeout=5000)
     print("==================================== FIM ====================================")    
     #sys.exit()
     #fechando_explorer()
@@ -40,7 +42,8 @@ def log(texto_):
                 log.write("")
                         
     with open("log.txt" , "a", encoding="utf-8-sig")  as log:
-        log.write(f"\n{str(texto_)} - {str(agora())}")     
+        log.write(f"\n{str(texto_)} - {str(agora())}")   
+            
 
 def botao_Apps():
     #botao para habilitar as opções
@@ -254,19 +257,48 @@ def backup_IW_QUERIES_HOME_CARE():
     fechando_explorer()
     log("Função Backup IW QUERIES HOME CARE - fim")        
 
-
-#==================================== INÍCIO ====================================
-try:
-    if __name__ == "__main__":
-        print("==================================== INÍCIO ====================================")
-        pausa(2)
+def Executar():
+    print(f"#==================================== Executar()")
+    try:
+        print("Iniciando...")
         backup_Projetos()
         backup_MV_QUERYs()
         backup_IW_QUERIES_HOME_CARE()
         fim()
+    except Exception as erro:
+        print(f"log.close() {agora()}\nErro: {erro=}, {type(erro)=}")  
+
+#==================================== INÍCIO ====================================
+def interface():
+    root = tk.Tk()
+    root.maxsize(1080,1024)
+    root.geometry("400x200")
+    root.title("Janela Pricipal")
+    #criando evento na thread, para ser usado apos ser setado, ser verificado e encerrar a thread        
+    fechar_thread = threading.Event()    
+    
+    #iniciando thread para usar na funcao Executar()    
+    threadExecutar = threading.Thread(target=Executar)
+    
+    #para interromper 
+    threadExecutar.daemon = True
+        
+    bt_Iniciar = tk.Button(root, text="Iniciar", command=lambda: [ print("Botao Iniciar") , threadExecutar.start()])
+    bt_Iniciar.pack()    
+
+    bt_Sair = tk.Button(root, text="Fechar", command=lambda: [ print("Botao Fechar\nroot.destroy()\nfechar_thread.set()\n\n") , root.destroy(), fechar_thread.set()])
+    bt_Sair.pack()
+    
+    root.mainloop()  
+try:
+    if __name__ == "__main__":
+        print("==================================== INÍCIO ====================================")
+        pausa(2)
+        interface()
+
 except KeyboardInterrupt:
     print("==================================== FIM ====================================")
-    print("Interrompido pelo ctrl + c!!!")        
+    print("Interrompido pelo ctrl + c!!!\n")        
 except Exception as erro:
     print("==================================== FIM ====================================")
     print(f"Erro: {erro=}, {type(erro)=}")  
