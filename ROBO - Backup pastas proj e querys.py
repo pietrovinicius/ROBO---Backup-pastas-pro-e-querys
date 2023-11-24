@@ -271,9 +271,10 @@ def Executar():
 #==================================== INÍCIO ====================================
 def interface():
     root = tk.Tk()
-    root.maxsize(1080,1024)
-    root.geometry("400x200")
-    root.title("Janela Pricipal")
+    root.maxsize(600,600)
+    root.minsize(600,150)
+    root.geometry("400x50")
+    root.title("ROBO - BACKUP PASTA C")
     #criando evento na thread, para ser usado apos ser setado, ser verificado e encerrar a thread        
     fechar_thread = threading.Event()    
     
@@ -284,10 +285,10 @@ def interface():
     threadExecutar.daemon = True
         
     bt_Iniciar = tk.Button(root, text="Iniciar", command=lambda: [ print("Botao Iniciar") , threadExecutar.start()])
-    bt_Iniciar.pack()    
+    bt_Iniciar.pack( fill="both" , expand=True)     
 
     bt_Sair = tk.Button(root, text="Fechar", command=lambda: [ print("Botao Fechar\nroot.destroy()\nfechar_thread.set()\n\n") , root.destroy(), fechar_thread.set()])
-    bt_Sair.pack()
+    bt_Sair.pack(fill="both" , expand=True)
     
     root.mainloop()  
 try:
